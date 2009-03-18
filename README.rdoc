@@ -1,0 +1,7 @@
+= opener
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Stephen Touset. See LICENSE for details.
