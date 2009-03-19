@@ -9,7 +9,8 @@ class Opener::Edge
   EDGES = Hash.new {|h,k| h[k] = {} }
   
   attr_accessor :head
-  attr_accessor :tail
+  attr_accessor :tails
+  attr_accessor :node
   attr_accessor :move
   
   attr_accessor :games
@@ -21,12 +22,14 @@ class Opener::Edge
   end
   
   #
-  # Creates a new Edge connecting the +head+ node and the tail after +move+. 
+  # Creates a new Edge connecting the +head+ edge and the tail node resulting
+  # from +move+. 
   #
   def initialize(head = nil, move = nil)
-    self.move = move
-    self.head = head
-    self.tail = Opener::Node.instance(self.to_epn)
+    self.move  = move
+    self.head  = head
+    self.tails = []
+    self.node  = Opener::Node.instance(self.to_pgn)
   end
   
   def *(seen)
@@ -35,17 +38,17 @@ class Opener::Edge
   end
   
   def +(wins)
-    self.tail.wins = wins
+    self.node.wins = wins
     self
   end
   
   def -(losses)
-    self.tail.losses = losses
+    self.node.losses = losses
     self
   end
   
   def |(annotation)
-    self.tail.annotation = annotation
+    self.node.annotation = annotation
     self
   end
   
@@ -76,8 +79,8 @@ class Opener::Edge
     move.gsub!(/0/, 'O')
     
     returning self.class.instance(self, move, &block) do |edge|
-      edge.tail.name   = name
-      edge.tail.edges << self
+     edge.node.name  = name
+     self.tails     << edge
     end
   end
 end

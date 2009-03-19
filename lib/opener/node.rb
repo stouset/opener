@@ -6,7 +6,6 @@ class Opener::Node
   NODES = {}
   
   attr_accessor :board
-  attr_accessor :edges
   attr_accessor :name
   
   attr_accessor :wins
@@ -19,6 +18,5 @@ class Opener::Node
   
   def initialize(board)
     self.board = board
-    self.edges = []
   end
 end
