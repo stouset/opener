@@ -30,7 +30,7 @@ class Opener::Edge
     self.move  = move
     self.head  = head
     self.tails = Set.new
-    self.node  = Opener::Node.instance(self.to_pgn)
+    self.node  = Opener::Node.instance(self.to_epd)
   end
   
   def [](*moves)
@@ -79,7 +79,10 @@ class Opener::Edge
     end.join(' ').strip
   end
   
-  def to_epn
+  def to_epd
+    @_to_epd ||= %x{
+      echo "#{self.to_pgn}" | ./bin/pgn2epd 2>/dev/null
+    }.chomp.sub(/(\w\d)$/, '-')
   end
   
   def to_s
