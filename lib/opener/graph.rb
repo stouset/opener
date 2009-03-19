@@ -8,7 +8,7 @@ class Opener::Graph
   # Initializes a new graph. The parameters passed are sent straight to parse.
   #
   def initialize(filename = nil, &block)
-    self.root = Opener::Node.new
+    self.root = Opener::Edge.new
     
     parse(filename, &block)
   end
@@ -18,7 +18,7 @@ class Opener::Graph
   # moves.
   #
   def [](*moves)
-    returning(Opener::Graph.new) do |graph|
+    returning Opener::Graph.new do |graph|
       graph.root = self.root[*moves.map(&:to_sym)]
     end
   end
