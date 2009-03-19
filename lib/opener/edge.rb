@@ -12,6 +12,7 @@ class Opener::Edge
   attr_accessor :move
   
   attr_accessor :games
+  attr_accessor :transposition
   
   def self.instance(head, move)
     EDGES[head][move] &&  warn("Duplicate edge #{head} -> #{move}.")
@@ -29,18 +30,31 @@ class Opener::Edge
   
   def *(seen)
     self.games = games
+    self
   end
   
   def +(wins)
     self.tail.wins = wins
+    self
   end
   
   def -(losses)
     self.tail.losses = losses
+    self
   end
   
   def |(annotation)
     self.tail.annotation = annotation
+    self
+  end
+  
+  def ~
+    self.transposition = true
+    self
+  end
+  
+  def transposition?
+    !! self.transposition
   end
   
   private
