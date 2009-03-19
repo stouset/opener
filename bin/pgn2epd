@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+#
+#
+use warnings;
+use strict;
+use Chess::PGN::Parse;
+use Chess::PGN::EPD;
+
+local $/ = undef;
+my $text = <>;
+
+if ($text eq "\n") {
+  print "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq";
+  print "\n";
+  exit;
+}
+
+my $pgn = new Chess::PGN::Parse(undef, $text);
+
+$pgn->read_game();
+$pgn->quick_parse_game();
+
+my @epd = epdlist( @{$pgn->moves()} );
+
+print $epd[-1];
+print "\n";
