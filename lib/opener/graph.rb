@@ -34,4 +34,12 @@ class Opener::Graph
     root.instance_eval(&block)  if block_given?
     self
   end
+  
+  def inspect
+    root.inspect
+  end
+  
+  def to_s
+    root.to_s
+  end
 end

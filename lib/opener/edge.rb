@@ -76,7 +76,24 @@ class Opener::Edge
   def to_pgn
     moves.enum_slice(2).enum_with_index.map do |(w, b), turn|
       "#{turn + 1}. #{w} #{b}"
-    end.join(' ')
+    end.join(' ').strip
+  end
+  
+  def to_epn
+  end
+  
+  def to_s
+    to_pgn
+  end
+  
+  def inspect
+    self.to_pgn.dup.tap do |pgn|
+      metadata = [node.name, node.annotation].compact.join(', ')
+      choices  = self.tails.map(&:move)
+      
+      pgn << " (#{metadata})" unless metadata.blank?
+      pgn << " -> #{choices.inspect}"
+    end
   end
   
   private
