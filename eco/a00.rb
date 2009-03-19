@@ -37,10 +37,10 @@ g3('Benko\'s Opening') do
   g6  { * 2706 + 38.0 - 25.5 }.Bg2.Bg7.e3.Nf6.Ne2.O_O.O_O.d5.d3.e5
   c5  { * 1533 + 35.7 - 28.6 }.Bg2
   
-  d5.Nf3.Nf6   # -> King's Indian Attack
-  Nf6().Nf3.d5 # -> King's Indian Attack
-  Nf6().c4.e5  # -> English
-  Nf6().Bg2.d5 # -> d5.Bg2.Nf6
-  g6.c4.Bg7    # -> English
-  Nf3().Nf6    # -> Nf3.g6.g3
+  ~ d5.Nf3.Nf6   # -> King's Indian Attack
+  ~ Nf6().Nf3.d5 # -> King's Indian Attack
+  ~ Nf6().c4.e5  # -> English
+  ~ Nf6().Bg2.d5 # -> d5.Bg2.Nf6
+  ~ g6.c4.Bg7    # -> English
+  ~ Nf3().Nf6    # -> Nf3.g6.g3
 end
