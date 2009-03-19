@@ -64,6 +64,10 @@ class Opener::Edge
   private
   
   def method_missing(move, name = nil, &block)
+    move = move.to_s
+    move.gsub!(/_/, '-')
+    move.gsub!(/0/, 'O')
+    
     returning self.class.instance(self, move, &block) do |edge|
       edge.tail.name   = name
       edge.tail.edges << self
