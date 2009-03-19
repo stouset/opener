@@ -18,7 +18,7 @@ class Opener::Graph
   # moves.
   #
   def [](*moves)
-    returning(Opener::Graph.new) do
+    returning(Opener::Graph.new) do |graph|
       graph.root = self.root[*moves.map(&:to_sym)]
     end
   end
