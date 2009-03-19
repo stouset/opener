@@ -7,27 +7,29 @@ class Opener::Edge
   
   EDGES = Hash.new {|h,k| h[k] = {} }
   
-  attr_accessor :parent
-  attr_accessor :child
+  attr_accessor :head
+  attr_accessor :tail
+  attr_accessor :move
   
-  def self.instance(parent, move)
-    EDGES[parent][move] &&  warn("Duplicate edge #{parent} -> #{move}.")
-    EDGES[parent][move] ||= new(parent, move)
+  def self.instance(head, move)
+    EDGES[head][move] &&  warn("Duplicate edge #{head} -> #{move}.")
+    EDGES[head][move] ||= new(head, move)
   end
   
   #
-  # Creates a new Edge connecting the +parent+ node and the node after +move+. 
+  # Creates a new Edge connecting the +head+ node and the tail after +move+. 
   #
-  def initialize(parent, move)
-    self.parent = parent
-    self.child  = Opener::Node.new(parent.moves + [move])
+  def initialize(head, move)
+    self.move = move
+    self.head = head
+    self.tail = Opener::Node.new(self.to_epn)
   end
   
   private
   
   def method_missing(move, name = nil, &block)
-    returning self.class.instance(self.child, move, &block) do |edge|
-      edge.child.name = name
+    returning self.class.instance(self.tail, move, &block) do |edge|
+      edge.tail.name = name
     end
   end
 end
