@@ -11,6 +11,8 @@ class Opener::Edge
   attr_accessor :tail
   attr_accessor :move
   
+  attr_accessor :games
+  
   def self.instance(head, move)
     EDGES[head][move] &&  warn("Duplicate edge #{head} -> #{move}.")
     EDGES[head][move] ||= new(head, move)
@@ -23,6 +25,22 @@ class Opener::Edge
     self.move = move
     self.head = head
     self.tail = Opener::Node.new(self.to_epn)
+  end
+  
+  def *(seen)
+    self.games = games
+  end
+  
+  def +(wins)
+    self.tail.wins = wins
+  end
+  
+  def -(losses)
+    self.tail.losses = losses
+  end
+  
+  def |(annotation)
+    self.tail.annotation = annotation
   end
   
   private
