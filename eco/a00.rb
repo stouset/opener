@@ -20,7 +20,7 @@ end
 g3('Benko\'s Opening') do
   * 16562 + 37.9 - 28.6
   
-  h5('Lasker simul special')  { * 17 + 64.7 - 29.4 }
+  h5('Lasker Simul Special')  { * 17 + 64.7 - 29.4 }
   
   e5 do
     * 2626 + 37.4 - 31.7
