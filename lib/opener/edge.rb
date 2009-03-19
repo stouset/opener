@@ -19,7 +19,6 @@ class Opener::Edge
   attr_accessor :transposition
   
   def self.instance(head = nil, move = nil)
-    EDGES[head][move] &&  warn("Duplicate edge #{head} -> #{move}.")
     EDGES[head][move] ||= new(head, move)
   end
   
