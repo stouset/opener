@@ -1,3 +1,4 @@
+require 'enumerator'
 require 'singleton'
 
 require 'facets/kernel/returning'
@@ -59,6 +60,12 @@ class Opener::Edge
   
   def transposition?
     !! self.transposition
+  end
+  
+  def to_pgn
+    moves.enum_slice(2).enum_with_index.map do |(w, b), turn|
+      "#{turn + 1}. #{w} #{b}"
+    end.join(' ')
   end
   
   private
