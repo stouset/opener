@@ -1,5 +1,5 @@
-require 'facets/kernel/to_proc'
 require 'facets/kernel/returning'
+require 'facets/symbol/to_proc'
 
 class Opener::Graph
   attr_accessor :root
