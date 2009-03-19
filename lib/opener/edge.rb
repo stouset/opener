@@ -53,6 +53,10 @@ class Opener::Edge
     self
   end
   
+  def moves
+    @_moves ||= head ? (head.moves.dup << move) : []
+  end
+  
   def transposition?
     !! self.transposition
   end
