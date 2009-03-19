@@ -33,6 +33,13 @@ class Opener::Edge
     self.node  = Opener::Node.instance(self.to_pgn)
   end
   
+  def [](*moves)
+    move = moves.shift.to_sym
+    edge = tails.detect {|edge| edge.move == move }
+    
+    moves.any? ? edge[*moves] : edge
+  end
+  
   def *(seen)
     self.games = games
     self
