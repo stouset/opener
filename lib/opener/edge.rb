@@ -61,8 +61,8 @@ class Opener::Edge
   
   def method_missing(move, name = nil, &block)
     returning self.class.instance(self.tail, move, &block) do |edge|
-      edge.tail.name     = name
-      edge.tail.parents << self
+      edge.tail.name   = name
+      edge.tail.edges << self
     end
   end
 end

@@ -5,20 +5,20 @@ class Opener::Node
   
   NODES = {}
   
-  attr_accessor :id
-  attr_accessor :parents
+  attr_accessor :board
+  attr_accessor :edges
   attr_accessor :name
   
   attr_accessor :wins
   attr_accessor :losses
   attr_accessor :annotation
   
-  def self.instance(id)
-    NODES[id] ||= new(id)
+  def self.instance(board)
+    NODES[board] ||= new(board)
   end
   
-  def initialize(id)
-    self.id      = id
-    self.parents = []
+  def initialize(board)
+    self.board = board
+    self.edges = []
   end
 end
