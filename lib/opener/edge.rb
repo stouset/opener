@@ -1,4 +1,5 @@
 require 'enumerator'
+require 'set'
 require 'singleton'
 
 require 'facets/kernel/returning'
@@ -28,7 +29,7 @@ class Opener::Edge
   def initialize(head = nil, move = nil)
     self.move  = move
     self.head  = head
-    self.tails = []
+    self.tails = Set.new
     self.node  = Opener::Node.instance(self.to_pgn)
   end
   
