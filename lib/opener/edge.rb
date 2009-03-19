@@ -2,7 +2,8 @@ require 'enumerator'
 require 'set'
 require 'singleton'
 
-require 'facets/kernel/returning'
+require 'facets/blank'
+require 'facets/kernel/tap'
 
 class Opener::Edge
   include Singleton
@@ -75,13 +76,16 @@ class Opener::Edge
   private
   
   def method_missing(move, name = nil, &block)
-    move = move.to_s
-    move.gsub!(/_/, '-')
-    move.gsub!(/0/, 'O')
-    
-    returning self.class.instance(self, move, &block) do |edge|
-     edge.node.name  = name
-     self.tails     << edge
+    self.class.instance(self, pgnify(move), &block).tap do |edge|
+      edge.node.name  = name
+      self.tails     << edge
     end
+  end
+  
+  def pgnify(move)
+    move.to_s.tap do |move|
+      move.gsub!(/_/, '-')
+      move.gsub!(/0/, 'O')
+    end.to_sym
   end
 end
