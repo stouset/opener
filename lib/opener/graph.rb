@@ -30,5 +30,6 @@ class Opener::Graph
   def parse(io = nil, &block)
     root.instance_eval(io.read) if io
     root.instance_eval(&block)  if block_given?
+    self
   end
 end
