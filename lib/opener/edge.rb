@@ -14,7 +14,7 @@ class Opener::Edge
   attr_accessor :games
   attr_accessor :transposition
   
-  def self.instance(head, move)
+  def self.instance(head = nil, move = nil)
     EDGES[head][move] &&  warn("Duplicate edge #{head} -> #{move}.")
     EDGES[head][move] ||= new(head, move)
   end
@@ -22,10 +22,10 @@ class Opener::Edge
   #
   # Creates a new Edge connecting the +head+ node and the tail after +move+. 
   #
-  def initialize(head, move)
+  def initialize(head = nil, move = nil)
     self.move = move
     self.head = head
-    self.tail = Opener::Node.new(self.to_epn)
+    self.tail = Opener::Node.instance(self.to_epn)
   end
   
   def *(seen)

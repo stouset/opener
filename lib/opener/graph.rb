@@ -8,7 +8,7 @@ class Opener::Graph
   # Initializes a new graph. The parameters passed are sent straight to parse.
   #
   def initialize(filename = nil, &block)
-    self.root = Opener::Edge.new
+    self.root = Opener::Edge.instance
     
     parse(filename, &block)
   end
