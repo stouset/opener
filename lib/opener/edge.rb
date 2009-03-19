@@ -11,6 +11,7 @@ class Opener::Edge
   attr_accessor :child
   
   def self.instance(parent, move)
+    EDGES[parent][move] &&  warn 'Duplicate edge: #{parent} -> #{move}' 
     EDGES[parent][move] ||= new(parent, move)
   end
   
@@ -20,6 +21,10 @@ class Opener::Edge
   end
   
   private
+  
+  def warn(message)
+    STDERR.puts "Warning: #{message}"
+  end
   
   def method_missing(move, name = nil, &block)
     returning self.class.instance(self.node, move, &block) do |edge|
