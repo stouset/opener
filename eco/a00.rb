@@ -5,7 +5,7 @@ b4('Polish (Sokolsky) Opening') do
   Nh6('Tuebingen Variation')
   
   e5 do
-    * 2236 + 35.7 - 40.0 | 24.3
+    * 2236 + 35.7 - 40.0
      
     Bb2().Bxb4.Bxe5.Nf6 | '='
     a3.d5               | '='
