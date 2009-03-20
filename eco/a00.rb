@@ -108,3 +108,12 @@ Nc3('Dunst Opening, Sleipner Opening, Heinrichsen Opening') do
   ~ c5.Nf3 # -> Nf3.c5.Nc3
   ~ e5.e4  # -> e4.e5.Nc3
 end
+
+a3('Anderssen\'s Opening') do
+  self * 1216 + 36.6 - 39.1
+  
+  d5    * 298 + 33.6 - 38.7
+  e5    * 281 + 39.9 - 38.8
+  g6    * 227 + 24.7 - 54.2
+  Nf6() * 207 + 39.6 - 36.2
+end
