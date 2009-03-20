@@ -27,13 +27,15 @@ class Opener::Node
   end
   
   def stats
-    "+%5.2f%\n=%5.2f%\n-%5.2f%" % [wins, draws, losses] if (wins and losses)
+    [ "+%5.2f%" % wins,
+      "=%5.2f%" % draws,
+      "-%5.2f%" % losses ] if (wins and losses)
   end
   
   def to_dot
     label = [
       name.to_s.split(',').map(&:strip).join('\n'),
-      stats,
+      stats.join('\n'),
       annotation
     ].reject(&:blank?).join('\n').gsub(%r{\n}, '\n')
     %{ "#{self.board}" [label = "#{label}"] }.strip
