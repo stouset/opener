@@ -86,13 +86,17 @@ Nc3('Dunst Opening, Sleipner Opening, Heinrichsen Opening') do
   e5.a3('Battambang Opening')
   c5.d4.cxd4.Qxd4.Nc6.Qh4('Novosibirsk Opening')
   
-  d5 { self * 2669 + 36.3 - 35.7 }.e4 do
-    d4   { self * 1566 + 40.2 - 40.7 }.Nce2
-    dxe4 { self * 1467 + 36.5 - 34.3 }.Nxe4.Bf5.Ng3.Bg6 | '='
+  d5 do
+    self * 2669 + 36.3 - 35.7
     
-    e6    * 453 + 33.1 - 34.9
-    c6    * 342 + 32.2 - 37.4
-    Nf6() * 342 + 38.6 - 37.1
+    e4 do
+      self * 2202 + 37.3 - 34.2
+      d4   { self * 1566 + 40.2 - 40.7 }.Nce2
+      dxe4 { self * 1467 + 36.5 - 34.3 }.Nxe4.Bf5.Ng3.Bg6 | '='
+      e6    * 453 + 33.1 - 34.9
+      c6    * 342 + 32.2 - 37.4
+      Nf6() * 342 + 38.6 - 37.1
+    end
   end
   
   e5 { self *  892 + 50.4 - 28.6 }.Nf3.Nc6.d4.exd4.Nxd4.Nf6 | '='
