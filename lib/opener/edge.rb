@@ -3,6 +3,7 @@ require 'set'
 require 'singleton'
 
 require 'facets/blank'
+require 'facets/enumerable/sum'
 require 'facets/kernel/tap'
 
 class Opener::Edge
@@ -41,7 +42,7 @@ class Opener::Edge
   end
   
   def *(seen)
-    self.games = games
+    self.games = seen
     self
   end
   
@@ -63,6 +64,10 @@ class Opener::Edge
   def ~
     self.transposition = true
     self
+  end
+  
+  def games
+    @games ||= self.tails.sum(&:games)
   end
   
   def moves
