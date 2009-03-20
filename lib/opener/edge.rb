@@ -78,6 +78,12 @@ class Opener::Edge
     @_depth ||= head ? head.depth + 1 : 0
   end
   
+  def frequency
+    unless self.games.zero? or self.head.games.zero?
+      '%.2f%' % (self.games.to_f / self.head.games * 100)
+    end
+  end
+  
   def turn
     (depth + 1) / 2
   end
@@ -113,8 +119,7 @@ class Opener::Edge
   
   def to_dot
     if head
-      label = self.to_move
-      node  = self.node.to_dot
+      label = [self.to_move, self.frequency].join('\n')
       head  = self.head.to_epd
       epd   = self.to_epd
       
