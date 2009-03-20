@@ -29,7 +29,11 @@ class Opener::Node
   end
   
   def to_dot
-    label = [ name, stats, annotation ].compact.join('\n')
+    label = [
+      name.to_s.split(',').map(&:strip).join('\n'),
+      stats,
+      annotation
+    ].compact.join('\n').gsub(%r{\n}, '\n')
     %{ "#{self.board}" [label = "#{label}"] }.strip
   end
 end
