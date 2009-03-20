@@ -27,7 +27,7 @@ class Opener::Node
   end
   
   def stats
-    "+#{wins}%\n=#{draws}%\n-#{losses}%" if (wins and losses)
+    "+%5.2f%\n=%5.2f%\n-%5.2f%" % [wins, draws, losses] if (wins and losses)
   end
   
   def to_dot
