@@ -102,7 +102,8 @@ class Opener::Edge
   private
   
   def method_missing(move, name = nil, &block)
-    self.class.instance(self, pgnify(move), &block).tap do |edge|
+    # TODO: def me as an optimization?
+    self.class.instance(self, pgnify(move)).tap do |edge|
       self.tails     << edge
       edge.node.name  = name
       edge.instance_eval(&block) if block_given?
