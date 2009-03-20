@@ -1,4 +1,4 @@
-b4('Polish (Sokolsky) Opening') do
+b4('Polish Opening, Sokolsky Opening') do
   self * 5622 + 37.2 - 39.1
   
   c6('Outflank Variation') * 442 + 30.8 - 40.3
@@ -43,4 +43,39 @@ g3('Benko\'s Opening') do
   ~ Nf6().Bg2.d5 # -> d5.Bg2.Nf6
   ~ g6.c4.Bg7    # -> English
   ~ g6.Nf3.Nf6    # -> Nf3.g6.g3
+end
+
+g4('Grob\'s Attack') do
+  self * 755 + 37.6 - 44.8
+  
+  d5 do
+    self * 451 + 36.1 - 45.5
+    
+    Bg2().c6.g5('Spike Attack')
+    Bg2().c6.h3.e5.d4.e4.c4.Bd6     | '=/+'
+    Bg2().Bxg4?.c4('Fritz Gambit').d4('Romford Counter-Gambit')
+    Bg2().Bxg4?.c4.c6.cxd5.cxd5.Qb3 | '+/='
+  end
+  
+  e5 do
+    self * 173 + 36.4 - 47.4
+    
+    d3.d5.Bg2.Nc6.h3.Nge7   | '=/+'
+    f4?.Qh4('Fool\'s Mate') | '1-0'
+  end
+end
+
+h3('Clemenz Opening, Mead\'s Opening, Basman\'s Opening, de Klerk\'s Opening') do
+  self * 184 + 31.0 - 42.9
+  
+  e5 { self * 52 + 28.8 - 44.2 }.a3('Global Opening')
+  d5 * 46 + 32.6 - 50.0
+  c5 * 29 + 31.0 - 44.8
+end
+
+Nh3('Amar Opening, Paris Opening') do
+  self * 94 + 25.5 - 44.7
+  
+  d5 { self * 36 + 25.0 - 41.7 }.g3.e5.f4.Bxh3.Bxh3.exf4('Amar Gambit')
+  e5 { self * 25 + 28.0 - 56.0 }.g3
 end
