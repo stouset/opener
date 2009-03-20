@@ -121,3 +121,22 @@ a3('Anderssen\'s Opening') do
   g6    * 227 + 24.7 - 54.2
   Nf6() * 207 + 39.6 - 36.2
 end
+
+a4('Ware Opening, Meadow Hay Opening') do
+  self * 174 + 30.5 - 29.3
+  
+  e5 do
+    h4('Crab Opening').Nc6 | '=+'
+    e4.Nf6                 | '=+'
+    Nf3().e4               | '=+'
+    d4.exd4.Qxd4.Nc6       | '=+'
+    Ra3?.Bxa3.Nxa3.d5      | '-/+'
+  end
+  
+  a5('Symmetric Variation') | '='
+  
+  b5.axb5.Bb7('Wing Gambit Accepted') | '=/+'
+  b5.a5('Wing Gambit Declined')       | '=/+'
+  b6.d4.d5.Nc3.Nd7('Cologne Gambit')  | '=/+'
+  e5.a5.d5.e3.f5.a6('Ware Gambit')    | '=/+'
+end
