@@ -100,7 +100,7 @@ class Opener::Edge
   def to_pgn
     moves.enum_slice(2).enum_with_index.map do |(w, b), turn|
       "#{turn + 1}. #{w} #{b}"
-    end.join(' ').strip
+    end.join(' ').gsub(%r{[!?]}, '').strip
   end
   
   def to_epd
