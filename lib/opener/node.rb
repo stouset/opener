@@ -1,5 +1,7 @@
 require 'singleton'
 
+require 'facets/blank'
+
 class Opener::Node
   include Singleton
   
@@ -33,7 +35,7 @@ class Opener::Node
       name.to_s.split(',').map(&:strip).join('\n'),
       stats,
       annotation
-    ].compact.join('\n').gsub(%r{\n}, '\n')
+    ].reject(&:blank?).join('\n').gsub(%r{\n}, '\n')
     %{ "#{self.board}" [label = "#{label}"] }.strip
   end
 end
