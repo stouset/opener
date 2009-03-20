@@ -16,8 +16,8 @@ class Opener::Graph
   # moves.
   #
   def [](*moves)
-    returning Opener::Graph.new do |graph|
-      graph.root = self.root[*moves.map(&:to_sym)]
+    if node = self.root[*moves.map(&:to_sym)]
+      Opener::Graph.new.tap {|g| g.root = node }
     end
   end
   
