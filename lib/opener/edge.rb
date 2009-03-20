@@ -69,8 +69,27 @@ class Opener::Edge
     @_moves ||= head ? (head.moves.dup << move) : []
   end
   
+  def depth
+    @_depth ||= head ? head.depth + 1 : 0
+  end
+  
+  def turn
+    (depth + 1) / 2
+  end
+  
+  def halfturn?
+    depth % 2 == 0
+  end
+  
   def transposition?
     !! self.transposition
+  end
+  
+  def to_move
+    "#{turn}".tap do |buffer|
+       buffer << (halfturn? ? '...' : '. ')
+       buffer << (self.move.to_s)
+     end
   end
   
   def to_pgn
