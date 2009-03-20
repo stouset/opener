@@ -79,3 +79,32 @@ Nh3('Amar Opening, Paris Opening') do
   d5 { self * 36 + 25.0 - 41.7 }.g3.e5.f4.Bxh3.Bxh3.exf4('Amar Gambit')
   e5 { self * 25 + 28.0 - 56.0 }.g3
 end
+
+Nc3('Dunst Opening, Sleipner Opening, Heinrichsen Opening') do
+  self * 7542 + 38.6 - 35.3
+  
+  e5.a3('Battambang Opening')
+  c5.d4.cxd4.Qxd4.Nc6.Qh4('Novosibirsk Opening')
+  
+  d5 { self * 2669 + 36.3 - 35.7 }.e4 do
+    d4   { self * 1566 + 40.2 - 40.7 }.Nce2
+    dxe4 { self * 1467 + 36.5 - 34.3 }.Nxe4.Bf5.Ng3.Bg6 | '='
+    
+    e6    * 453 + 33.1 - 34.9
+    c6    * 342 + 32.2 - 37.4
+    Nf6() * 342 + 38.6 - 37.1
+  end
+  
+  e5 { self *  892 + 50.4 - 28.6 }.Nf3.Nc6.d4.exd4.Nxd4.Nf6 | '='
+  
+  c5    * 1777 + 31.6 - 41.9
+  Nf6() * 1016 + 45.0 - 31.2
+  g6    *  470 + 37.2 - 36.6
+  e6    *  302 + 38.4 - 32.8
+  
+  ~ d5.d4  # -> d4.d5.Nc3
+  ~ d5.e4  # -> e4.d5.Nc3
+  ~ c5.e4  # -> e4.c5.Nc3
+  ~ c5.Nf3 # -> Nf3.c5.Nc3
+  ~ e5.e4  # -> e4.e5.Nc3
+end
