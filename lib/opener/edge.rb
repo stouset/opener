@@ -99,9 +99,22 @@ class Opener::Edge
   end
   
   def to_epd
-    @_to_epd ||= %x{
-      echo "#{self.to_pgn}" | ./bin/pgn2epd 2>/dev/null
-    }.chomp.sub(/(\w\d)$/, '-')
+    @_to_epd ||= %x{echo "#{self.to_pgn}" | ./bin/pgn2epd 2>/dev/null}.tap do |epd|
+      raise "Invalid move: #{self.to_pgn}" if epd =~ %r{\n.*\n}
+      epd.chomp!
+      epd.sub!(/(\w\d)$/, '-')
+    end if move
+  end
+  
+  def to_dot
+    if head
+      label = self.to_move
+      node  = self.node.to_dot
+      head  = self.head.to_epd
+      epd   = self.to_epd
+      
+      %{ "#{head}" -> "#{epd}" [label = "#{label}"] }.strip
+    end
   end
   
   def to_s

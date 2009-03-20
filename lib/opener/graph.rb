@@ -42,4 +42,11 @@ class Opener::Graph
   def to_s
     root.to_s
   end
+  
+  def to_dot
+    %( digraph Openings {
+      #{Opener::Node::NODES.values.map(&:to_dot).join("\n")}
+      #{Opener::Edge::EDGES.values.map(&:values).flatten.map(&:to_dot).join("\n")}
+    } )
+  end
 end

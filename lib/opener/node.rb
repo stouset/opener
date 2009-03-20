@@ -19,4 +19,17 @@ class Opener::Node
   def initialize(board)
     self.board = board
   end
+  
+  def draws
+    100 - wins - losses
+  end
+  
+  def stats
+    "+#{wins}%\\n=#{draws}%\\n-#{losses}%" if (wins and losses)
+  end
+  
+  def to_dot
+    label = [ name, stats, annotation ].compact.join('\n')
+    %{ "#{self.board}" [label = "#{label}"] }.strip
+  end
 end
