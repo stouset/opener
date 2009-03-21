@@ -32,6 +32,8 @@ class Opener::Edge
     self.head  = head
     self.tails = Set.new
     self.node  = Opener::Node.instance(self.to_epd)
+    
+    self.node.parents << self
   end
   
   def [](*moves)

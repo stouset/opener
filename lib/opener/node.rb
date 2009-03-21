@@ -1,6 +1,9 @@
+require 'digest/md5'
+require 'set'
 require 'singleton'
 
 require 'facets/blank'
+require 'facets/kernel/try'
 
 class Opener::Node
   include Singleton
@@ -9,6 +12,8 @@ class Opener::Node
   
   attr_accessor :board
   attr_accessor :name
+  
+  attr_accessor :parents
   
   attr_accessor :wins
   attr_accessor :losses
@@ -19,7 +24,23 @@ class Opener::Node
   end
   
   def initialize(board)
-    self.board = board
+    self.board   = board
+    self.parents = Set.new
+  end
+  
+  def parent
+    @_parent ||= begin
+      parents = self.parents.to_a
+      parents = parents.all?(&:transposition?) ? [parents.first] : parents.reject(&:transposition?)
+      parent  = parents.first.head if parents.any? && parents.first.head
+      
+      if parents.length > 1
+        warn "Unflagged transpositions:"
+        parents.each {|edge| warn "  #{edge.to_pgn}" }
+      end
+      
+      parent
+    end
   end
   
   def draws
