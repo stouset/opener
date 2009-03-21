@@ -45,6 +45,9 @@ class Opener::Graph
   
   def to_dot
     %( digraph Openings {
+      node [ fontname = "Monaco" ]
+      edge [ fontname = "Monaco" ]
+      
       #{Opener::Node::NODES.values.map(&:to_dot).join("\n")}
       #{Opener::Edge::EDGES.values.map(&:values).flatten.map(&:to_dot).join("\n")}
     } )
