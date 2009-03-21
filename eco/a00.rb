@@ -140,3 +140,18 @@ a4('Ware Opening, Meadow Hay Opening') do
   b6.d4.d5.Nc3.Nd7('Cologne Gambit')  | '=/+'
   e5.a5.d5.e3.f5.a6('Ware Gambit')    | '=/+'
 end
+
+c3('Saragossa Opening') do
+  self * 665 + 34.0 - 41.2
+  
+  e5.c4('Sicilian Defense') | '='
+  d5.d4                     | '='
+end
+
+d3('Mieses Opening') do
+  self * 1591 + 33.2 - 47.4
+  
+  d5 { self * 692 + 32.8 - 41.2 | '=' }
+  e5 { self * 348 + 33.6 - 46.6 | '=' }.Nd2('Valencia Opening')
+  c5 { self * 160 + 33.1 - 41.9       }.Nc3.Nc6.g3('Venezolana Opening')
+end
