@@ -44,13 +44,23 @@ class Opener::Node
   end
   
   def draws
-    100 - wins - losses
+    (100 - wins - losses) rescue nil
   end
   
   def stats
-    [ "+%5.2f%" % wins,
-      "=%5.2f%" % draws,
-      "-%5.2f%" % losses ] if (wins and losses)
+    [].tap do |stats|
+      stats << "+%5.2f%" % wins   if wins
+      stats << "=%5.2f%" % draws  if wins && losses
+      stats << "-%5.2f%" % losses if losses
+    end
+  end
+  
+  def color
+    @_color ||= case
+      when name   then ((Digest::MD5.hexdigest(name)[0..5].to_i(16) + 0xffffff) / 2).to_s(16)
+      when parent then parent.node.color
+      else             "f6f6f6"
+    end
   end
   
   def to_dot
@@ -59,6 +69,10 @@ class Opener::Node
       stats.join('\n'),
       annotation
     ].reject(&:blank?).join('\n').gsub(%r{\n}, '\n')
-    %{ "#{self.board}" [label = "#{label}"] }.strip
+    
+    fillcolor = self.color
+    color     = self.parent.try(:halfturn?) ? '000000' : 'ffffff'
+        
+    %{ "#{self.board}" [label="#{label}", fillcolor="##{fillcolor}" color="##{color}" style="filled"] }.strip
   end
 end
