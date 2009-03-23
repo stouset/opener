@@ -35,6 +35,10 @@ class Opener::Graph
     self
   end
   
+  def ancestry
+    root.ancestry
+  end
+  
   def tree
     root.tree
   end
@@ -48,9 +52,9 @@ class Opener::Graph
   end
   
   def to_dot
-    tree  = self.tree
-    nodes = tree.select   {|o| o.kind_of?(Opener::Node) }
-    edges = tree.select   {|o| o.kind_of?(Opener::Edge) }
+    graph = self.ancestry + self.tree
+    nodes = graph.select   {|o| o.kind_of?(Opener::Node) }
+    edges = graph.select   {|o| o.kind_of?(Opener::Edge) }
     edges = edges.sort_by {|e| (not e.transposition?) ? 0 : 1 }
     
     %( digraph Openings {

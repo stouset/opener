@@ -96,6 +96,10 @@ class Opener::Edge
     !! self.transposition
   end
   
+  def ancestry
+    self.head ? self.head.ancestry + [self.head.node, self.head] : []
+  end
+  
   def tree
     [self.node, self] + self.tails.map(&:tree).flatten
   end
@@ -108,7 +112,7 @@ class Opener::Edge
   end
   
   def to_pgn
-    moves.enum_slice(2).enum_with_index.map do |(w, b), turn|
+    @_to_pgn ||= moves.enum_slice(2).enum_with_index.map do |(w, b), turn|
       "#{turn + 1}. #{w} #{b}"
     end.join(' ').gsub(%r{[!?]}, '').strip
   end
