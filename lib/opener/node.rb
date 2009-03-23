@@ -63,7 +63,7 @@ class Opener::Node
     @_color ||= case
       when name   then self.color
       when parent then parent.node.to_color
-      else             'f6f6f6'
+      else             'f5f5f5'
     end
   end
   
