@@ -59,24 +59,35 @@ class Opener::Node
     end
   end
   
-  def color
+  def to_color
     @_color ||= case
-      when name   then ((Digest::MD5.hexdigest(name)[0..5].to_i(16) + 0xffffff) / 2).to_s(16)
-      when parent then parent.node.color
-      else             "f6f6f6"
+      when name   then self.color
+      when parent then parent.node.to_color
+      else             'f6f6f6'
     end
   end
   
   def to_dot
-    label = [
-      name.to_s.split(',').map(&:strip).join('\n'),
-      stats.join('\n'),
-      annotation
-    ].reject(&:blank?).join('\n').gsub(%r{\n}, '\n')
+    label = name.to_s.split(',')
+    label.push *stats
+    label.push annotation
     
-    fillcolor = self.color
+    label = label.reject(&:blank?).map(&:strip).join('\n')
+    
+    fillcolor = self.to_color
     color     = self.parent.try(:halfturn?) ? '000000' : 'ffffff'
         
-    %{ "#{self.board}" [label="#{label}", fillcolor="##{fillcolor}" color="##{color}" style="filled"] }.strip
+    %{ "#{self.board}" [ label     = "#{label}"
+                         fillcolor = "##{fillcolor}"
+                         color     = "##{color}"
+                         style     = "filled" ] }
+  end
+  
+  protected
+  
+  def color
+    color = Digest::MD5.hexdigest(name)[0..5]
+    color = (color.to_i(16) + 0xffffff) / 2.0
+    color = color.round.to_s(16)
   end
 end
