@@ -112,17 +112,13 @@ class Opener::Edge
   end
   
   def to_pgn
-    @_to_pgn ||= moves.enum_slice(2).enum_with_index.map do |(w, b), turn|
+    self.moves.enum_slice(2).enum_with_index.map do |(w, b), turn|
       "#{turn + 1}. #{w} #{b}"
     end.join(' ').gsub(%r{[!?]}, '').strip
   end
   
   def to_epd
-    @_to_epd ||= %x{echo "#{self.to_pgn}" | ./bin/pgn2epd 2>/dev/null}.tap do |epd|
-      raise "Invalid move: #{self.to_pgn}" if epd =~ %r{\n.*\n}
-      epd.chomp!
-      epd.sub!(/(\w\d)$/, '-')
-    end if move
+    pgn2epd(self.to_pgn)
   end
   
   def to_dot
@@ -152,7 +148,6 @@ class Opener::Edge
   private
   
   def method_missing(move, name = nil, &block)
-    # TODO: def me as an optimization?
     self.class.instance(self, pgnify(move)).tap do |edge|
       self.tails     << edge
       edge.node.name  = name
