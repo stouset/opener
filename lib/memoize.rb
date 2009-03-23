@@ -5,7 +5,7 @@
 #  Created by James Edward Gray II on 2006-01-21.
 #  Copyright 2006 Gray Productions. All rights reserved.
 
-require 'pstore'
+require 'facets/kernel/returning'
 
 # 
 # Have your class or module <tt>extend Memoizable</tt> to gain access to the 
@@ -37,17 +37,21 @@ module Memoizable
     end
   end
   
-  class PStore
+  class File
     def initialize(name)
-      @store = ::PStore.new(name)
+      @name  = name
+      @cache = ::File.open(name, 'rb') {|io| Marshal::load(io) } rescue {}
     end
     
     def [](index)
-      @store.transaction { @store[index] }
+      @cache[index]
     end
     
     def []=(index, value)
-      @store.transaction { @store[index] = value }
+      returning(value) do
+        @cache[index] = value
+        ::File.open(@name, 'wb+') {|io| Marshal::dump(@cache, io) }
+      end
     end
   end
 end

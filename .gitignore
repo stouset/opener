@@ -1,6 +1,6 @@
 *.sw?
 .DS_Store
-.epd.pstore
+.epd.cache
 coverage
 rdoc
 pkg

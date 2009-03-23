@@ -11,4 +11,4 @@ def pgn2epd(pgn)
   end
 end
 
-memoize :pgn2epd, Memoizable::PStore.new('.epd.pstore')
+memoize :pgn2epd, Memoizable::File.new('.epd.cache')
