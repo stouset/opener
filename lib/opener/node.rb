@@ -75,7 +75,7 @@ class Opener::Node
     label = label.reject(&:blank?).map(&:strip).join('\n')
     
     fillcolor = self.to_color
-    color     = self.parent.try(:halfturn?) ? '000000' : 'ffffff'
+    color     = self.parent.try(:halfturn?) ? '000000' : 'cccccc'
         
     %{ "#{self.board}" [ label     = "#{label}"
                          fillcolor = "##{fillcolor}"
