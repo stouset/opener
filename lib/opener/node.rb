@@ -19,8 +19,12 @@ class Opener::Node
   attr_accessor :losses
   attr_accessor :annotation
   
-  def self.instance(board)
-    NODES[board] ||= new(board)
+  def self.instance(edge)
+    board = edge.to_epd
+    
+    NODES[board]         ||= new(board)
+    NODES[board].parents  << edge
+    NODES[board]
   end
   
   def initialize(board)
