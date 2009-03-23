@@ -48,11 +48,19 @@ class Opener::Graph
   end
   
   def to_dot
+    tree  = self.tree
+    nodes = tree.select   {|o| o.kind_of?(Opener::Node) }
+    edges = tree.select   {|o| o.kind_of?(Opener::Edge) }
+    edges = edges.sort_by {|e| (not e.transposition?) ? 0 : 1 }
+    
     %( digraph Openings {
+      ordering = "out"
+      
       node [ fontname = "Monaco" ]
       edge [ fontname = "Monaco" ]
       
-      #{self.tree.map(&:to_dot).join("\n")}
+      #{nodes.map(&:to_dot).join("\n")}
+      #{edges.map(&:to_dot).join("\n")}
     } )
   end
 end
