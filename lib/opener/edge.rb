@@ -96,6 +96,10 @@ class Opener::Edge
     !! self.transposition
   end
   
+  def tree
+    [self.node, self] + self.tails.map(&:tree).flatten
+  end
+  
   def to_move
     "#{turn}".tap do |buffer|
        buffer << (halfturn? ? '...' : '. ')

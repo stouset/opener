@@ -35,6 +35,10 @@ class Opener::Graph
     self
   end
   
+  def tree
+    root.tree
+  end
+  
   def inspect
     root.inspect
   end
@@ -48,8 +52,7 @@ class Opener::Graph
       node [ fontname = "Monaco" ]
       edge [ fontname = "Monaco" ]
       
-      #{Opener::Node::NODES.values.map(&:to_dot).join("\n")}
-      #{Opener::Edge::EDGES.values.map(&:values).flatten.map(&:to_dot).join("\n")}
+      #{self.tree.map(&:to_dot).join("\n")}
     } )
   end
 end
