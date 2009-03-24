@@ -61,7 +61,7 @@ g4('Grob\'s Attack') do
     self * 173 + 36.4 - 47.4
     
     d3.d5.Bg2.Nc6.h3.Nge7   | '=/+'
-    f4?.Qh4('Fool\'s Mate') | '1-0'
+    f4?.Qh4('Fool\'s Mate') | '#'
   end
 end
 
@@ -165,4 +165,31 @@ e3('Van\'t Kruijs Opening') do
   Nf6() * 397 + 29.0 - 47.1
   g6    * 215 + 24.7 - 54.9
   c5    * 177 + 38.4 - 43.5
+end
+
+f3('Gedult\'s Opening, Barnes Opening') do
+  self * 83 + 30.1 - 44.6
+  
+  e5 do
+    self * 35 + 31.4 - 60
+    
+    e4.Bc5
+    d4.exd4
+    g4?.Qh4 | '#'
+    
+    Kf2('Hammerschlag Opening, Fried Fox Opening, Pork Chop Opening')
+  end
+  
+  ~ d5 { self * 19 + 26.3 - 47.4 }.e4.dxe4.Nc3
+end
+
+h4('Anti-Borg Opening, Desprez Opening') do
+  self * 166 + 34.9 + 41.0
+  
+  e5
+  d5
+end
+
+Na3('Durkin\'s Attack') do
+  self * 26 + 42.3 - 34.6
 end
