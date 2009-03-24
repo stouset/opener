@@ -19,6 +19,10 @@ class Opener::Node
   attr_accessor :losses
   attr_accessor :annotation
   
+  class << self
+    remove_method :instance
+  end
+  
   def self.instance(edge)
     board = edge.to_epd
     
@@ -69,8 +73,8 @@ class Opener::Node
   
   def to_dot
     label = name.to_s.split(',')
-    label.push *stats
-    label.push annotation
+    label.push(*stats)
+    label.push(annotation)
     
     label = label.reject(&:blank?).map(&:strip).join('\n')
     

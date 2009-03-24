@@ -16,8 +16,12 @@ class Opener::Edge
   attr_accessor :node
   attr_accessor :move
   
-  attr_accessor :games
+  attr_writer   :games
   attr_accessor :transposition
+  
+  class << self
+    remove_method :instance
+  end
   
   def self.instance(head = nil, move = nil)
     EDGES[head][move] ||= new(head, move)

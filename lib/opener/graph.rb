@@ -2,13 +2,13 @@ require 'facets/kernel/returning'
 require 'facets/symbol/to_proc'
 
 class Opener::Graph
-  attr_accessor :root
+  attr_writer :root
   
   #
   # Initializes a new graph. The parameters passed are sent straight to parse.
   #
   def initialize(filename = nil, &block)
-    parse(filename, &block)
+    self.parse(filename, &block)
   end
   
   #
