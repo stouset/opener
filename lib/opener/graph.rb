@@ -7,8 +7,8 @@ class Opener::Graph
   #
   # Initializes a new graph. The parameters passed are sent straight to parse.
   #
-  def initialize(filename = nil, &block)
-    self.parse(filename, &block)
+  def initialize(*filenames, &block)
+    filenames.each {|f| self.parse(f, &block) }
   end
   
   #
@@ -30,8 +30,8 @@ class Opener::Graph
   # or both of the block and IO arguments can be provided.
   #
   def parse(io = nil, &block)
-    root.instance_eval(io.read) if io
-    root.instance_eval(&block)  if block_given?
+    root.instance_eval(io.read, io.path, 0) if io
+    root.instance_eval(&block)              if block_given?
     self
   end
   
