@@ -11,13 +11,6 @@ f4('Bird\'s Opening') do
     end
   end
   
-  d5 do
-    self * 7990 + 34.8 - 40.1 
-    
-    Nf3().Nf6 { self | '=' }.e3.g6.Be2.Bg7 | '='
-    b3.Bg4                                 | '='
-  end
-  
   g5('Hobbs Gambit') * 18 + 50.0 - 27.8
   
   f5  { self * 301 + 43.9 - 27.6 | '∞' }.e4.fxe4.Nc3.Nf6.g4('Swiss Gambit')
