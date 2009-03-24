@@ -18,6 +18,6 @@ f4('Bird\'s Opening') do
   c5    * 1478 + 32.9 - 43.5
   g6    * 1220 + 28.0 - 44.4
   
-  ~ e5.g4? # Fool's Mate
-  ~ e5.e4  # King's Gambit
+  ~ e5.g4? # -> Fool's Mate
+  ~ e5.e4  # -> King's Gambit
 end

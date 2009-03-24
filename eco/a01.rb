@@ -45,7 +45,7 @@ b3('Nimzovich-Larsen Attack') do
   b6('Symmetrical Variation')  * 232 + 36.6 - 24.1
   c5('English Variation')      * 546 + 40.7 - 33.7
   
-  ~ e5.c4        # c4.e5.b3
-  ~ d5.Nf3       # Reti Opening
-  ~ Nf6().Bb2.d5 # d5.Bb2.Nf6
+  ~ e5.c4        # -> c4.e5.b3
+  ~ d5.Nf3       # -> Reti Opening
+  ~ Nf6().Bb2.d5 # -> d5.Bb2.Nf6
 end
