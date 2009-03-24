@@ -175,7 +175,7 @@ f3('Gedult\'s Opening, Barnes Opening') do
     
     e4.Bc5
     d4.exd4
-    g4?.Qh4 | '#'
+    g4?.Qh4('Fool\'s Mate') | '#'
     
     Kf2('Hammerschlag Opening, Fried Fox Opening, Pork Chop Opening')
   end
