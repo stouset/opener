@@ -1,0 +1,9 @@
+#!/usr/bin/ruby -w
+
+require 'opener'
+
+g = Opener::Graph.new do
+  ARGV.each {|f| parse(open(f)) }
+end
+
+puts g.to_dot
