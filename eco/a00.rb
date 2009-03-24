@@ -155,3 +155,14 @@ d3('Mieses Opening') do
   e5 { self * 348 + 33.6 - 46.6 | '=' }.Nd2('Valencia Opening')
   c5 { self * 160 + 33.1 - 41.9       }.Nc3.Nc6.g3('Venezolana Opening')
 end
+
+e3('Van\'t Kruijs Opening') do
+  self * 2047 + 33.2 - 47.4
+  
+  e5 { self * 572 + 34.3 - 48.8 | '=' }.c4.d6.Nc3.Nc6.b3.Nf6('Amsterdam Attack')
+  
+  d5    * 473 + 31.1 - 48.8 | '='
+  Nf6() * 397 + 29.0 - 47.1
+  g6    * 215 + 24.7 - 54.9
+  c5    * 177 + 38.4 - 43.5
+end
