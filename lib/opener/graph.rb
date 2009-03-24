@@ -30,7 +30,7 @@ class Opener::Graph
   # or both of the block and IO arguments can be provided.
   #
   def parse(io = nil, &block)
-    root.instance_eval(io.read, io.path, 0) if io
+    root.instance_eval(io.read, io.path, 1) if io
     root.instance_eval(&block)              if block_given?
     self
   end
