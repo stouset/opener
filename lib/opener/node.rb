@@ -40,10 +40,10 @@ class Opener::Node
     @_parent ||= begin
       if self.parents.all?(&:transposition?)
         warn 'No authoritative parent:'
-        parents.each {|edge| warn " #{edge.to_pgn}"}
+        parents.each {|edge| warn "  #{edge.to_pgn}"}
       elsif self.parents.reject(&:transposition?).length > 1
         warn 'Inferred transpositions:'
-        parents.each {|edge| warn " #{edge.to_pgn}"}
+        parents.each {|edge| warn "  #{edge.to_pgn}"}
       end
       
       parent = parents.reject(&:transposition?).first || parents.to_a.first
