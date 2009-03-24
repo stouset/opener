@@ -63,6 +63,10 @@ class Opener::Node
     end
   end
   
+  def to_group
+    self.name || (self.parent ? self.parent.node.to_group : '')
+  end
+  
   def to_color
     @_color ||= case
       when name   then self.color
@@ -78,10 +82,12 @@ class Opener::Node
     
     label = label.reject(&:blank?).map(&:strip).join('\n')
     
+    group     = self.to_group
     fillcolor = self.to_color
     color     = self.parent.try(:halfturn?) ? '000000' : 'cccccc'
         
     %{ "#{self.board}" [ label     = "#{label}"
+                         group     = "#{group}"
                          fillcolor = "##{fillcolor}"
                          color     = "##{color}"
                          style     = "filled" ] }

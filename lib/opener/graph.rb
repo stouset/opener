@@ -53,7 +53,7 @@ class Opener::Graph
   
   def to_dot
     graph = self.ancestry + self.tree
-    nodes = graph.select   {|o| o.kind_of?(Opener::Node) }
+    nodes = graph.select   {|o| o.kind_of?(Opener::Node) }.uniq
     edges = graph.select   {|o| o.kind_of?(Opener::Edge) }
     edges = edges.sort_by {|e| (not e.transposition?) ? 0 : 1 }
     
