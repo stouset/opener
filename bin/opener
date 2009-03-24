@@ -1,7 +1,20 @@
 #!/usr/bin/ruby
 
+require 'optparse'
+require 'ostruct'
 require 'opener'
 
+options = OpenStruct.new(:moves => [])
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: opener [options] FILE..."
+  
+  opts.on('-m', '--moves [LIST]') do |moves|
+    options.moves = moves.split(',').map(&:to_sym)
+  end
+end.parse!
+
 g = Opener::Graph.new(*ARGV.map {|f| open(f) })
+g = g[*options.moves]
 
 puts g.to_dot

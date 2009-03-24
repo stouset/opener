@@ -39,10 +39,14 @@ class Opener::Edge
   end
   
   def [](*moves)
-    move = moves.shift.to_sym
-    edge = tails.detect {|edge| edge.move == move }
+    if moves.any?
+      move = moves.shift.to_sym
+      edge = tails.detect {|edge| edge.move == move }
     
-    moves.any? ? edge[*moves] : edge
+      moves.any? ? edge[*moves] : edge
+    else
+      self
+    end
   end
   
   def *(seen)
