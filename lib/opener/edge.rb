@@ -110,11 +110,11 @@ class Opener::Edge
   end
   
   def ancestry
-    self.head ? self.head.ancestry + [self.head.node, self.head] : []
+    [self.head].compact.map(&:ancestry).flatten << self
   end
   
-  def tree
-    [self.node, self] + self.tails.map(&:tree).flatten
+  def nodes
+    self.tails.map(&:nodes).flatten << self.node
   end
   
   def to_move
