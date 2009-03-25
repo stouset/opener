@@ -11,7 +11,7 @@ class Opener::Node
   NODES = {}
   
   attr_accessor :board
-  attr_accessor :name
+  attr_accessor :opening
   attr_accessor :variation
   
   attr_accessor :parents
@@ -24,17 +24,26 @@ class Opener::Node
     remove_method :instance
   end
   
-  def self.instance(edge)
+  def self.instance(edge, name)
     board = edge.to_epd
     
-    NODES[board]         ||= new(board)
+    if NODES[board].try(:name)
+      warn "Renaming #{NODES[board].name} to #{name}"
+    end
+    
+    NODES[board]         ||= new(board, name)
     NODES[board].parents  << edge
     NODES[board]
   end
   
-  def initialize(board)
-    self.board   = board
-    self.parents = Set.new
+  def initialize(board, name)
+    self.board     = board
+    self.parents   = Set.new
+    
+    case name
+      when String then self.opening   = name
+      when Symbol then self.variation = name.to_s
+    end
   end
   
   def parent
@@ -64,10 +73,14 @@ class Opener::Node
     end
   end
   
-  def basename
-    @_basename ||= case
-      when self.name   then self.name.to_s.split(',').first
-      when self.parent then self.parent.node.basename
+  def name
+    self.variation || self.opening
+  end
+  
+  def group
+    @_group ||= case
+      when self.opening then self.opening.to_s.split(',').first
+      when self.parent  then self.parent.node.group
       else                  ''
     end
   end
@@ -77,17 +90,17 @@ class Opener::Node
   end
   
   def fillcolor
-    self.class.colorize(self.basename)
+    self.class.colorize(self.group)
   end
   
   def to_dot
-    label = (variation || name).to_s.split(',')
+    label = name.to_s.split(',')
     label.push(*stats)
     label.push(annotation)
     
     label = label.reject(&:blank?).map(&:strip).join('\n')
     
-    group     = self.basename
+    group     = self.group
     fillcolor = self.fillcolor
     color     = self.color
         
