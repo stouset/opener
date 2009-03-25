@@ -112,9 +112,13 @@ class Opener::Node
   protected
   
   def self.colorize(name)
-    color = Digest::MD5.hexdigest(name)[0..5]
-    color = (color.to_i(16) + 0xffffff) / 2.0
-    color = color.round.to_s(16)
-    "##{color}"
+    unless name.blank?
+      color = Digest::MD5.hexdigest(name)[0..5]
+      color = (color.to_i(16) + 0xffffff) / 2.0
+      color = color.round.to_s(16)
+      "##{color}"
+    else
+      '#fcfcfc'
+    end
   end
 end
