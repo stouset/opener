@@ -8,6 +8,7 @@ require 'facets/kernel/tap'
 
 class Opener::Edge
   include Singleton
+  include Comparable
   
   EDGES = Hash.new {|h,k| h[k] = {} }
   
@@ -74,6 +75,10 @@ class Opener::Edge
     self
   end
   
+  def <=>(other)
+    (self.transposition? ? 1 : 0) <=> (other.transposition? ? 1 : 0)
+  end
+  
   def games
     @games ||= self.tails.sum(&:games)
   end
@@ -105,11 +110,11 @@ class Opener::Edge
   end
   
   def ancestry
-    self.head ? self.head.ancestry + [self.head.node, self.head] : []
+    [self.head].compact.map(&:ancestry).flatten << self
   end
   
-  def tree
-    [self.node, self] + self.tails.map(&:tree).flatten
+  def nodes
+    self.tails.map(&:nodes).flatten << self.node
   end
   
   def to_move
@@ -159,6 +164,7 @@ class Opener::Edge
     self.class.instance(self, pgnify(move)).tap do |edge|
       edge.node.name      = name if name
       edge.node.parents  << edge
+      self.node.children << edge
       self.tails         << edge
       edge.instance_eval(&block) if block_given?
     end

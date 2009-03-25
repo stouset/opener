@@ -39,8 +39,12 @@ class Opener::Graph
     root.ancestry
   end
   
-  def tree
-    root.tree
+  def nodes
+    root.nodes.uniq
+  end
+  
+  def edges
+    self.nodes.map(&:children).map(&:to_a).flatten
   end
   
   def inspect
@@ -52,10 +56,11 @@ class Opener::Graph
   end
   
   def to_dot
-    graph = self.ancestry + self.tree
-    nodes = graph.select   {|o| o.kind_of?(Opener::Node) }.uniq
-    edges = graph.select   {|o| o.kind_of?(Opener::Edge) }
-    edges = edges.sort_by {|e| (not e.transposition?) ? 0 : 1 }
+    nodes = self.nodes + self.ancestry.map(&:node)
+    edges = self.edges + self.ancestry
+    
+    nodes.uniq!
+    edges.sort!
     
     %( digraph Openings {
       ordering = "out"
