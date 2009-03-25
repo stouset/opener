@@ -24,26 +24,13 @@ class Opener::Node
     remove_method :instance
   end
   
-  def self.instance(edge, name)
-    board = edge.to_epd
-    
-    if NODES[board].try(:name)
-      warn "Renaming #{NODES[board].name} to #{name}"
-    end
-    
-    NODES[board]         ||= new(board, name)
-    NODES[board].parents  << edge
-    NODES[board]
+  def self.instance(board)
+    NODES[board] ||= new(board)
   end
   
-  def initialize(board, name)
+  def initialize(board)
     self.board     = board
     self.parents   = Set.new
-    
-    case name
-      when String then self.opening   = name
-      when Symbol then self.variation = name.to_s
-    end
   end
   
   def parent
@@ -70,6 +57,17 @@ class Opener::Node
       stats << "+%5.2f%" % wins   if wins
       stats << "=%5.2f%" % draws  if wins && losses
       stats << "-%5.2f%" % losses if losses
+    end
+  end
+  
+  def name=(name)
+    if self.name
+      warn "Renaming #{self.name} to #{name}"
+    end
+    
+    case name
+      when String then self.opening   = name
+      when Symbol then self.variation = name.to_s
     end
   end
   
