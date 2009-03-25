@@ -164,6 +164,7 @@ class Opener::Edge
     self.class.instance(self, pgnify(move)).tap do |edge|
       edge.node.name      = name if name
       edge.node.parents  << edge
+      self.node.children << edge
       self.tails         << edge
       edge.instance_eval(&block) if block_given?
     end

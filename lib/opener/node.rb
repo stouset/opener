@@ -15,6 +15,7 @@ class Opener::Node
   attr_accessor :variation
   
   attr_accessor :parents
+  attr_accessor :children
   
   attr_accessor :wins
   attr_accessor :losses
@@ -29,8 +30,9 @@ class Opener::Node
   end
   
   def initialize(board)
-    self.board     = board
-    self.parents   = Set.new
+    self.board    = board
+    self.parents  = Set.new
+    self.children = Set.new
   end
   
   def parent
