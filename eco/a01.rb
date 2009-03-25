@@ -1,7 +1,7 @@
 b3('Nimzovich-Larsen Attack') do
   self * 10296 + 36.2 - 34.9
   
-  e5('Modern Variation') do
+  e5(:'Modern Variation') do
     self * 4212 + 36.3 - 35.9
     
     Bb2 do
@@ -12,7 +12,20 @@ b3('Nimzovich-Larsen Attack') do
     end
   end
   
-  d5('Classical Variation') do
+  Nf6(:'Indian Variation') do
+    self * 1729 + 36.3 - 33.2
+    
+    Bb2 do
+      self * 1645 + 36.4 - 33.3
+      
+      g6 * 703 + 33.9 - 33.1
+      e6 * 385 + 39.0 - 29.4
+      d6 * 131 + 31.3 - 36.6
+      d5 * 286
+    end
+  end
+  
+  d5(:'Classical Variation') do
     self * 2757 + 34.1 - 36.5
     
     Bb2 do
@@ -27,23 +40,10 @@ b3('Nimzovich-Larsen Attack') do
     end
   end
   
-  Nf6('Indian Variation') do
-    self * 1729 + 36.3 - 33.2
-    
-    Bb2 do
-      self * 1645 + 36.4 - 33.3
-      
-      g6 * 703 + 33.9 - 33.1
-      e6 * 385 + 39.0 - 29.4
-      d6 * 131 + 31.3 - 36.6
-      d5 * 286
-    end
-  end
-  
-  f5('Dutch Variation') { self * 155 + 32.9 - 40.6 }.Nf3
-  b5('Polish Variation')       *  18 + 38.9 - 38.9
-  b6('Symmetrical Variation')  * 232 + 36.6 - 24.1
-  c5('English Variation')      * 546 + 40.7 - 33.7
+  c5(:'English Variation')      * 546 + 40.7 - 33.7
+  f5(:'Dutch Variation') { self * 155 + 32.9 - 40.6 }.Nf3
+  b5(:'Polish Variation')       *  18 + 38.9 - 38.9
+  b6(:'Symmetrical Variation')  * 232 + 36.6 - 24.1
   
   ~ e5.c4        # -> c4.e5.b3
   ~ d5.Nf3       # -> Reti Opening
