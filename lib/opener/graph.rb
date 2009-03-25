@@ -40,11 +40,11 @@ class Opener::Graph
   end
   
   def nodes
-    root.nodes.uniq
+    edges.map(&:node)
   end
   
   def edges
-    self.nodes.map(&:children).map(&:to_a).flatten
+    root.nodes.uniq.map(&:children).map(&:to_a).flatten
   end
   
   def inspect
