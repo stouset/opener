@@ -23,19 +23,19 @@ class Opener::Edge
     remove_method :instance
   end
   
-  def self.instance(head = nil, move = nil)
-    EDGES[head][move] ||= new(head, move)
+  def self.instance(head = nil, move = nil, name = nil)
+    EDGES[head][move] ||= new(head, move, name)
   end
   
   #
   # Creates a new Edge connecting the +head+ edge and the tail node resulting
   # from +move+. 
   #
-  def initialize(head = nil, move = nil)
+  def initialize(head = nil, move = nil, name = nil)
     self.move  = move
     self.head  = head
     self.tails = Set.new
-    self.node  = Opener::Node.instance(self)
+    self.node  = Opener::Node.instance(self, name)
   end
   
   def [](*moves)
@@ -156,10 +156,8 @@ class Opener::Edge
   private
   
   def method_missing(move, name = nil, &block)
-    self.class.instance(self, pgnify(move)).tap do |edge|
-      self.tails         << edge
-      edge.node.name      = name      if name.kind_of?(String)
-      edge.node.variation = name.to_s if name.kind_of?(Symbol)
+    self.class.instance(self, pgnify(move), name).tap do |edge|
+      self.tails << edge
       edge.instance_eval(&block) if block_given?
     end
   end
