@@ -35,7 +35,7 @@ class Opener::Node
   
   def parent
     @_parent ||= begin
-      if self.parents.all?(&:transposition?)
+      if self.parents.any? and self.parents.all?(&:transposition?)
         warn 'No authoritative parent:'
         parents.each {|edge| warn "  #{edge.to_pgn}"}
       elsif self.parents.reject(&:transposition?).length > 1
@@ -61,7 +61,7 @@ class Opener::Node
   end
   
   def name=(name)
-    if self.name
+    if !self.name.blank? && self.name.class == name.class
       warn "Renaming #{self.name} to #{name}"
     end
     
@@ -72,7 +72,7 @@ class Opener::Node
   end
   
   def name
-    self.variation || self.opening
+    [self.opening, self.variation].compact.join(', ')
   end
   
   def group
@@ -112,9 +112,13 @@ class Opener::Node
   protected
   
   def self.colorize(name)
-    color = Digest::MD5.hexdigest(name)[0..5]
-    color = (color.to_i(16) + 0xffffff) / 2.0
-    color = color.round.to_s(16)
-    "##{color}"
+    unless name.blank?
+      color = Digest::MD5.hexdigest(name)[0..5]
+      color = (color.to_i(16) + 0xffffff) / 2.0
+      color = color.round.to_s(16)
+      "##{color}"
+    else
+      '#fcfcfc'
+    end
   end
 end
