@@ -61,7 +61,7 @@ class Opener::Node
   end
   
   def name=(name)
-    if self.name
+    if !self.name.blank? && self.name.class == name.class
       warn "Renaming #{self.name} to #{name}"
     end
     
@@ -72,7 +72,7 @@ class Opener::Node
   end
   
   def name
-    self.variation || self.opening
+    [self.opening, self.variation].compact.join(', ')
   end
   
   def group
