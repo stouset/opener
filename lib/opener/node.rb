@@ -12,6 +12,7 @@ class Opener::Node
   
   attr_accessor :board
   attr_accessor :name
+  attr_accessor :variation
   
   attr_accessor :parents
   
@@ -63,41 +64,46 @@ class Opener::Node
     end
   end
   
-  def to_group
-    self.name || (self.parent ? self.parent.node.to_group : '')
-  end
-  
-  def to_color
-    @_color ||= case
-      when name   then self.color
-      when parent then parent.node.to_color
-      else             'f5f5f5'
+  def basename
+    @_basename ||= case
+      when self.name   then self.name.to_s.split(',').first
+      when self.parent then self.parent.node.basename
+      else                  ''
     end
   end
   
+  def color
+    self.parent.try(:halfturn?) ? '#000000' : '#cccccc'
+  end
+  
+  def fillcolor
+    self.class.colorize(self.basename)
+  end
+  
   def to_dot
-    label = name.to_s.split(',')
+    label = (variation || name).to_s.split(',')
     label.push(*stats)
     label.push(annotation)
     
     label = label.reject(&:blank?).map(&:strip).join('\n')
     
-    group     = self.to_group
-    fillcolor = self.to_color
-    color     = self.parent.try(:halfturn?) ? '000000' : 'cccccc'
+    group     = self.basename
+    fillcolor = self.fillcolor
+    color     = self.color
         
     %{ "#{self.board}" [ label     = "#{label}"
                          group     = "#{group}"
-                         fillcolor = "##{fillcolor}"
-                         color     = "##{color}"
+                         fillcolor = "#{fillcolor}"
+                         color     = "#{color}"
                          style     = "filled" ] }
   end
   
   protected
   
-  def color
+  def self.colorize(name)
     color = Digest::MD5.hexdigest(name)[0..5]
     color = (color.to_i(16) + 0xffffff) / 2.0
     color = color.round.to_s(16)
+    "##{color}"
   end
 end

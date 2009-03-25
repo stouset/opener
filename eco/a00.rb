@@ -1,8 +1,8 @@
 b4('Polish Opening, Sokolsky Opening') do
   self * 5622 + 37.2 - 39.1
   
-  c6('Outflank Variation') * 442 + 30.8 - 40.3
-  Nh6('Tuebingen Variation')
+  c6(:'Outflank Variation') * 442 + 30.8 - 40.3
+  Nh6(:'Tuebingen Variation')
   
   e5 do
     self * 2236 + 35.7 - 40.0
@@ -25,7 +25,7 @@ g3('Benko\'s Opening') do
   e5 do
     self * 2626 + 37.4 - 31.7
     
-    Nf3('Reversed Alekhine') * 49 + 40.8 - 34.7
+    Nf3(:'Reversed Alekhine') * 49 + 40.8 - 34.7
     
     Bg2 { self * 1724 + 36.3 - 33.4 }
     c4  { self *  718 + 39.3 - 26.2 }
@@ -51,9 +51,9 @@ g4('Grob\'s Attack') do
   d5 do
     self * 451 + 36.1 - 45.5
     
-    Bg2().c6.g5('Spike Attack')
+    Bg2().c6.g5(:'Spike Attack')
     Bg2().c6.h3.e5.d4.e4.c4.Bd6     | '=/+'
-    Bg2().Bxg4?.c4('Fritz Gambit').d4('Romford Counter-Gambit')
+    Bg2().Bxg4?.c4(:'Fritz Gambit').d4(:'Romford Counter-Gambit')
     Bg2().Bxg4?.c4.c6.cxd5.cxd5.Qb3 | '+/='
   end
   

@@ -4,9 +4,9 @@ Nf3('Réti Opening') do
   f5('Réti v Dutch') do
     self * 6545 + 40.8 - 29.0
     
-    e4('Pirc-Lisitsin Gambit') { self * 589 + 44.8 - 33.1 }.fxe4.Ng5.Nf6 | '='
+    e4(:'Pirc-Lisitsin Gambit') { self * 589 + 44.8 - 33.1 }.fxe4.Ng5.Nf6 | '='
     
-    d3 { self * 569 + 43.6 - 27.1 }.Nf6.e4('Lisitsin Gambit Deferred')
+    d3 { self * 569 + 43.6 - 27.1 }.Nf6.e4(:'Lisitsin Gambit Deferred')
     
     g3 * 2168 + 41.1 - 25.4
     d4 * 1614 + 38.0 - 31.2
@@ -26,11 +26,11 @@ Nf3('Réti Opening') do
   d6 do
     self * 6436 + 38.1 - 30.0
     
-    e4.Bg4('Wade Defense')
+    e4.Bg4(:'Wade Defense')
     d4.Bg4 | '='
   end
   
-  g5('Herrstroem Gambit') * 13 + 46.2 - 46.2
+  g5(:'Herrstroem Gambit') * 13 + 46.2 - 46.2
   
   g6 * 10823 + 35.4 - 30.9
   e6 *  4504 + 43.6 - 26.8
