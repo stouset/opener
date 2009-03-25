@@ -11,7 +11,7 @@ Nf3().Nf6 do
       
       b4(:'Réti-Smyslov Variation')
       
-      Bg2.Bg7.O_O.O_O.d3.d5.Nbd2.Nc6 | '+='
+      Bg2().Bg7.O_O.O_O.d3.d5.Nbd2.Nc6 | '+='
     end
     
     d5 { self * 6279 + 33.0 - 30.7 }.Bg2.c6.O_O.Bg4.d3.Nbd7.Nbd2.e5 | '='
