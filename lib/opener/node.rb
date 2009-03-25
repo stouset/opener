@@ -63,15 +63,23 @@ class Opener::Node
     end
   end
   
-  def to_group
-    self.name || (self.parent ? self.parent.node.to_group : '')
+  def basename
+    @_basename ||= case
+      when self.name   then self.name.to_s.split(',').first
+      when self.parent then self.parent.node.basename
+      else                  ''
+    end
   end
   
-  def to_color
-    @_color ||= case
-      when name   then self.color
-      when parent then parent.node.to_color
-      else             'f5f5f5'
+  def color
+    self.parent.try(:halfturn?) ? '#000000' : '#cccccc'
+  end
+  
+  def fillcolor
+    @fillcolor ||= case
+      when self.name   then self.class.colorize(self.name)
+      when self.parent then self.parent.node.fillcolor
+      else                  '#f5f5f5'
     end
   end
   
@@ -82,22 +90,23 @@ class Opener::Node
     
     label = label.reject(&:blank?).map(&:strip).join('\n')
     
-    group     = self.to_group
-    fillcolor = self.to_color
-    color     = self.parent.try(:halfturn?) ? '000000' : 'cccccc'
+    group     = self.basename
+    fillcolor = self.fillcolor
+    color     = self.color
         
     %{ "#{self.board}" [ label     = "#{label}"
                          group     = "#{group}"
-                         fillcolor = "##{fillcolor}"
-                         color     = "##{color}"
+                         fillcolor = "#{fillcolor}"
+                         color     = "#{color}"
                          style     = "filled" ] }
   end
   
   protected
   
-  def color
+  def self.colorize(name)
     color = Digest::MD5.hexdigest(name)[0..5]
     color = (color.to_i(16) + 0xffffff) / 2.0
     color = color.round.to_s(16)
+    color = "##{color}"
   end
 end
