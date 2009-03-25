@@ -157,8 +157,9 @@ class Opener::Edge
   
   def method_missing(move, name = nil, &block)
     self.class.instance(self, pgnify(move)).tap do |edge|
-      self.tails     << edge
-      edge.node.name  = name if name
+      self.tails         << edge
+      edge.node.name      = name      if name.kind_of?(String)
+      edge.node.variation = name.to_s if name.kind_of?(Symbol)
       edge.instance_eval(&block) if block_given?
     end
   end

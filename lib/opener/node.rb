@@ -12,6 +12,7 @@ class Opener::Node
   
   attr_accessor :board
   attr_accessor :name
+  attr_accessor :variation
   
   attr_accessor :parents
   
@@ -76,15 +77,11 @@ class Opener::Node
   end
   
   def fillcolor
-    @fillcolor ||= case
-      when self.name   then self.class.colorize(self.name)
-      when self.parent then self.parent.node.fillcolor
-      else                  '#f5f5f5'
-    end
+    self.class.colorize(self.basename)
   end
   
   def to_dot
-    label = name.to_s.split(',')
+    label = (variation || name).to_s.split(',')
     label.push(*stats)
     label.push(annotation)
     
@@ -107,6 +104,6 @@ class Opener::Node
     color = Digest::MD5.hexdigest(name)[0..5]
     color = (color.to_i(16) + 0xffffff) / 2.0
     color = color.round.to_s(16)
-    color = "##{color}"
+    "##{color}"
   end
 end
