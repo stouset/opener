@@ -8,6 +8,7 @@ require 'facets/kernel/tap'
 
 class Opener::Edge
   include Singleton
+  include Comparable
   
   EDGES = Hash.new {|h,k| h[k] = {} }
   
@@ -72,6 +73,10 @@ class Opener::Edge
   def ~
     self.transposition = true
     self
+  end
+  
+  def <=>(other)
+    (self.transposition? ? 1 : 0) <=> (other.transposition? ? 1 : 0)
   end
   
   def games
