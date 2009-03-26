@@ -1,0 +1,23 @@
+#!/usr/bin/ruby -w
+
+until ARGF.eof?
+  note = ARGF.gets('').split("\n").last
+  pgn  = ARGF.gets('').split("\n").join(' ')
+  
+  note.gsub! %r{[\[\]"]},        ''   # remove brackets and quotes
+  note.gsub! %r{(Black|White) }, ''   # remove color annotation
+  
+  note.strip!
+  note = note.to_sym if $1 == 'Black' # convert to variation if necessary
+  
+  pgn.gsub! %r{\d+\. },      ''       # remove move numbers
+  pgn.gsub! %r{ },           '.'      # replace spaces with method calls
+  pgn.gsub! %r{-},           '_'      # convert dashes to underscores
+  pgn.gsub! %r{[+]},         ''       # remove un-ruby move annotations
+  pgn.gsub! %r{^([A-Z]\w+)}, '\1()'   # replace constants with methods
+  
+  pgn.gsub! %r{$},      "(#{note.inspect})"
+  pgn.gsub! %r{\(\)\(}, '('
+  
+  puts pgn
+end
