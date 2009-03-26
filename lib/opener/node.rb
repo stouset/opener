@@ -76,7 +76,7 @@ class Opener::Node
   end
   
   def name
-    [self.opening, self.variation].compact.join(', ')
+    [self.group, self.variation].compact.join(', ')
   end
   
   def group
