@@ -14,7 +14,8 @@ Nf3().d5.g3("King's Indian Attack", :'Barcza System') do
     self * 1309 + 32.2 - 27.5
     
     Bg2().Bg7.O_O.e5.d3.Ne7(:"Pachman System")
-    Bg2().Bg7.O_O.Nf6.d3.O_O.Nbd2.Nc6 | '='
+    Bg2().Bg7.O_O.Nf6.d3.O_O.Nbd2.Nc6 | '???' # http://en.wikibooks.org/wiki/Opening_theory_in_chess/1._Nf3/1...Nf6/2._g3
+                                              # http://en.wikibooks.org/wiki/Opening_theory_in_chess/1._Nf3/1...d5/2._g3
   end
   
   c6  { self * 4208 + 31.5 - 26.1 }.Bg2.Bg4.O_O.Nd7.d3.e6.Nbd2.Bd6                        | '='
