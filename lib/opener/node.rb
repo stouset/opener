@@ -40,7 +40,7 @@ class Opener::Node
   end
   
   def parent
-    @_parent = begin
+    @_parent ||= begin
       if self.parents.any? and self.parents.all?(&:transposition?)
         warn 'No authoritative parent:'
         parents.each {|edge| warn "  #{edge.to_pgn}" }
