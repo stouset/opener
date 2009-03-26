@@ -83,7 +83,7 @@ class Opener::Node
   
   def group
     case
-      when self.opening then self.opening.to_s.split(',').first
+      when self.opening then self.opening.gsub %r{\(.*?\)}, ''
       when self.parent  then self.parent.node.group
       else                  ''
     end
@@ -98,7 +98,7 @@ class Opener::Node
   end
   
   def to_dot
-    label = name.to_s.split(',')
+    label = [(self.opening || self.group), self.variation].compact
     label.push(*stats)
     label.push(annotation)
     
