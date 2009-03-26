@@ -1,0 +1,5 @@
+Nf3().d5("Reti Opening")
+Nf3().d5.d3(:"Old Indian attack")
+Nf3().d5.b4("Santasiere's folly")
+Nf3().d5.e4("Tennison (Lemberg, Zukertort) gambit")
+Nf3().d5.b3(:"Nimzovich-Larsen attack")
