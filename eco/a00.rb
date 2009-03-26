@@ -1,4 +1,4 @@
-b4('Polish Opening, Sokolsky Opening') do
+b4('Polish (Sokolsky) Opening') do
   self * 5622 + 37.2 - 39.1
   
   c6(:'Outflank Variation') * 442 + 30.8 - 40.3
@@ -65,7 +65,7 @@ g4('Grob\'s Attack') do
   end
 end
 
-h3('Clemenz Opening, Mead\'s Opening, Basman\'s Opening, de Klerk\'s Opening') do
+h3('Clemenz (Mead\'s, Basman\'s, de Klerk\'s) Opening') do
   self * 184 + 31.0 - 42.9
   
   e5 { self * 52 + 28.8 - 44.2 }.a3('Global Opening')
@@ -73,14 +73,14 @@ h3('Clemenz Opening, Mead\'s Opening, Basman\'s Opening, de Klerk\'s Opening') d
   c5 * 29 + 31.0 - 44.8
 end
 
-Nh3('Amar Opening, Paris Opening') do
+Nh3('Amar (Paris) Opening') do
   self * 94 + 25.5 - 44.7
   
   d5 { self * 36 + 25.0 - 41.7 }.g3.e5.f4.Bxh3.Bxh3.exf4('Amar Gambit')
   e5 { self * 25 + 28.0 - 56.0 }.g3
 end
 
-Nc3('Dunst Opening, Sleipner Opening, Heinrichsen Opening') do
+Nc3('Dunst (Sleipner, Heinrichsen) Opening') do
   self * 7542 + 38.6 - 35.3
   
   e5.a3('Battambang Opening')
@@ -122,7 +122,7 @@ a3('Anderssen\'s Opening') do
   Nf6() * 207 + 39.6 - 36.2
 end
 
-a4('Ware Opening, Meadow Hay Opening') do
+a4('Ware (Meadow Hay) Opening') do
   self * 174 + 30.5 - 29.3
   
   e5 do
@@ -167,7 +167,7 @@ e3('Van\'t Kruijs Opening') do
   c5    * 177 + 38.4 - 43.5
 end
 
-f3('Gedult\'s Opening, Barnes Opening') do
+f3('Gedult\'s (Barnes) Opening') do
   self * 83 + 30.1 - 44.6
   
   e5 do
@@ -177,13 +177,13 @@ f3('Gedult\'s Opening, Barnes Opening') do
     d4.exd4
     g4?.Qh4('Fool\'s Mate') | '#'
     
-    Kf2('Hammerschlag Opening, Fried Fox Opening, Pork Chop Opening')
+    Kf2('Hammerschlag (Fried Fox, Pork Chop) Opening')
   end
   
   ~ d5 { self * 19 + 26.3 - 47.4 }.e4.dxe4.Nc3
 end
 
-h4('Anti-Borg Opening, Desprez Opening') do
+h4('Anti-Borg (Desprez) Opening') do
   self * 166 + 34.9 + 41.0
   
   e5
