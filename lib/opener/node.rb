@@ -40,16 +40,18 @@ class Opener::Node
   end
   
   def parent
-    if self.parents.any? and self.parents.all?(&:transposition?)
-      warn 'No authoritative parent:'
-      parents.each {|edge| warn "  #{edge.to_pgn}" }
-    elsif self.parents.reject(&:transposition?).length > 1
-      warn 'Inferred transpositions:'
-      parents.each {|edge| warn "  #{edge.to_pgn}" }
-    end
+    @_parent = begin
+      if self.parents.any? and self.parents.all?(&:transposition?)
+        warn 'No authoritative parent:'
+        parents.each {|edge| warn "  #{edge.to_pgn}" }
+      elsif self.parents.reject(&:transposition?).length > 1
+        warn 'Inferred transpositions:'
+        parents.each {|edge| warn "  #{edge.to_pgn}" }
+      end
     
-    parent = parents.reject(&:transposition?).first || parents.to_a.first
-    parent.try(:head)
+      parent = parents.reject(&:transposition?).first || parents.to_a.first
+      parent.try(:head)
+    end
   end
   
   def draws
