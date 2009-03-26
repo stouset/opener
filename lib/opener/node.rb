@@ -98,7 +98,7 @@ class Opener::Node
   end
   
   def to_dot
-    label = [(self.opening || self.group), self.variation].compact
+    label = [(self.opening || self.group), self.variation.to_s].compact
     label.push(*stats)
     label.push(annotation)
     
