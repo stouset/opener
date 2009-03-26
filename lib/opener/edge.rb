@@ -160,9 +160,10 @@ class Opener::Edge
   
   private
   
-  def method_missing(move, name = nil, &block)
+  def method_missing(move, name = nil, variation = nil, &block)
     self.class.instance(self, pgnify(move)).tap do |edge|
-      edge.node.name      = name if name
+      edge.node.name      = name      if name
+      edge.node.variation = variation if variation
       edge.node.parents  << edge
       self.node.children << edge
       self.tails         << edge
