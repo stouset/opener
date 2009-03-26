@@ -7,7 +7,5 @@ Nf3().d5 do
   d3(:'Old Indian Attack')       *  582 + 33.5 - 39.2
   b3(:'Nimzovich-Larsen Attack') * 2873 + 36.4 - 30.1
   
-  d4 { self * 17224 + 36.9 - 26.3 }.Nf6.c4
-  g3        * 17681 + 37.7 - 26.7
-  c4        * 12200 + 39.6 - 26.0
+  ~ d4 { self * 17224 } # -> d4.d5.Nf3
 end
