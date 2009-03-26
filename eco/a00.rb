@@ -126,10 +126,10 @@ a4('Ware (Meadow Hay) Opening') do
   self * 174 + 30.5 - 29.3
   
   e5 do
-    h4('Crab Opening').Nc6 | '=+'
-    e4.Nf6                 | '=+'
-    Nf3().e4               | '=+'
-    d4.exd4.Qxd4.Nc6       | '=+'
+    h4('Crab Opening').Nc6 | '=/+'
+    e4.Nf6                 | '=/+'
+    Nf3().e4               | '=/+'
+    d4.exd4.Qxd4.Nc6       | '=/+'
     Ra3?.Bxa3.Nxa3.d5      | '-/+'
   end
   
