@@ -10,6 +10,10 @@ class Opener::Node
   
   NODES = {}
   
+  BLACK = '#000000'
+  WHITE = '#cccccc'
+  EMPTY = '#fcfcfc'
+  
   attr_accessor :board
   attr_accessor :opening
   attr_accessor :variation
@@ -86,7 +90,7 @@ class Opener::Node
   end
   
   def color
-    self.parent.try(:halfturn?) ? '#000000' : '#cccccc'
+    self.parent.try(:halfturn?) ? BLACK : WHITE
   end
   
   def fillcolor
@@ -120,7 +124,7 @@ class Opener::Node
       color = color.round.to_s(16)
       "##{color}"
     else
-      '#fcfcfc'
+      EMPTY
     end
   end
 end
