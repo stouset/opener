@@ -1,8 +1,7 @@
-Nf3().d5.g3(:"King's Indian attack (Barcza system)")
-Nf3().d5.g3.Nf6.Bg2.c6.O_O.Bg4(:"King's Indian attack, Yugoslav Variation")
-Nf3().d5.g3.Bg4.Bg2.Nd7(:"King's Indian attack, Keres Variation")
-Nf3().d5.g3.g6(:"King's Indian attack")
-Nf3().d5.g3.g6.Bg2.Bg7.O_O.e5.d3.Ne7(:"King's Indian attack, Pachman system")
-Nf3().d5.g3.c5(:"King's Indian attack (with ...c5)")
-Nf3().d5.g3.c5.Bg2(:"King's Indian attack")
-Nf3().d5.g3.c5.Bg2.Nc6.O_O.e6.d3.Nf6.Nbd2.Be7.e4.O_O.Re1(:"King's Indian attack, French Variation")
+Nf3().d5.g3("King's Indian Attack", :'Barcza System') do
+  Nf6().Bg2.c6.O_O.Bg4(:"Yugoslav Variation")
+  Bg4().Bg2.Nd7(:"Keres Variation")
+  g6.Bg2.Bg7.O_O.e5.d3.Ne7(:"Pachman System")
+  c5(:"with ...c5")
+  c5.Bg2.Nc6.O_O.e6.d3.Nf6.Nbd2.Be7.e4.O_O.Re1(:"French Variation")
+end
