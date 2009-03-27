@@ -124,9 +124,13 @@ class Opener::Node
   def self.colorize(name)
     unless name.blank?
       color = Digest::MD5.hexdigest(name)[0..5]
-      color = (color.to_i(16) + 0xffffff) / 2.0
-      color = color.round.to_s(16)
-      "##{color}"
+      bytes = [ color[0..1], color[2..3], color[4..5] ]
+      
+      bytes.map! {|b| b.to_i(16) * 2+ 0xcc }
+      bytes.map! {|b| b / 3.0 }
+      bytes.map! {|b| b.round.to_s(16) }
+      
+      "##{bytes.join('')}"
     else
       EMPTY
     end
