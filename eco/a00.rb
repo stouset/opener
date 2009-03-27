@@ -41,7 +41,7 @@ g3('Benko\'s Opening') do
   ~ Nf6().Nf3    # -> King's Indian Attack
   ~ Nf6().c4.e5  # -> English
   ~ Nf6().Bg2.d5 # -> d5.Bg2.Nf6
-  ~ g6.c4.Bg7    # -> English
+  ~ g6.c4        # -> English
   ~ g6.Nf3.Nf6   # -> Nf3.g6.g3
 end
 
