@@ -4,9 +4,8 @@ c4("English Opening") do
   g6 do
     self * 12331 + 33.2 - 32.9
     
-    Nc3 { self * 6164 + 31.8 - 35.2 }.Bg7
-    g3  { self * 2896 + 32.1 - 33.3 }.Bg7
-    d4  { self * 1633 + 40.2 - 27.3 }.Bg7
+    Nc3 { self * 6164 + 31.8 - 35.2 }.Bg7 | '='
+    g3  { self * 2896 + 32.1 - 33.3 }.Bg7 | '='
     Nf3 { self *  855 + 30.5 - 33.7 }.Bg7
     e4  { self *  726 + 37.2 - 22.6 }.Bg7
     
@@ -22,4 +21,8 @@ c4("English Opening") do
   d5.cxd5.Qxd5.Nc3.Qa5             | '+/='
   b5.cxb5.a6.bxa6.Bxa6             | '+/='
   g5.d4.Bg7.Nc3.h6.e4              | '+/='
+  
+  ~ g6.d4 * 1633 # -> Queen's Pawn, Modern
+  ~ d5.d4        # -> Queen's Gambit
+  ~ d5.Nf3       # -> Réti Opening
 end
