@@ -1,5 +1,5 @@
-c4("English Opening")
-c4.g6("English Opening")
-c4.g6.e4.e5(:"Adorjan defense")
-c4.b5(:"Jaenisch gambit")
-c4.f5(:"Anglo-Dutch defense")
+c4("English Opening") do
+  g6.e4.e5(:"Adorjan defense")
+  b5(:"Jaenisch gambit")
+  f5(:"Anglo-Dutch defense")
+end
