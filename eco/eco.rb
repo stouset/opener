@@ -1,8 +1,3 @@
-c4("English Opening")
-c4.g6("English Opening")
-c4.g6.e4.e5(:"Adorjan defense")
-c4.b5(:"Jaenisch gambit")
-c4.f5(:"Anglo-Dutch defense")
 c4.c6(:"Caro-Kann defensive system")
 c4.c6.Nf3.d5.b3(:"Caro-Kann defensive system")
 c4.c6.Nf3.d5.b3.Nf6.g3.Bg4(:"Torre defensive system")
