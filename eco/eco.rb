@@ -1,4 +1,3 @@
-c4.c6(:"Caro-Kann defensive system")
 c4.c6.Nf3.d5.b3(:"Caro-Kann defensive system")
 c4.c6.Nf3.d5.b3.Nf6.g3.Bg4(:"Torre defensive system")
 c4.c6.Nf3.d5.b3.Nf6.g3.Bf5(:"London defensive system")
