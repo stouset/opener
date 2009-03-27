@@ -86,10 +86,11 @@ class Opener::Node
   end
   
   def group
-    case
-      when self.opening then self.opening.gsub %r{\(.*?\)}, ''
-      when self.parent  then self.parent.node.group
-      else                  ''
+    @_group ||= case
+      when self.opening        then self.opening.gsub %r{\(.*?\)}, ''
+      when self.transposition? then ''
+      when self.parent         then self.parent.node.group
+      else                          ''
     end
   end
   
