@@ -10,7 +10,6 @@ Nf3('Réti Opening') do
     
     g3 * 2168 + 41.1 - 25.4
     d4 * 1614 + 38.0 - 31.2
-    c4 * 1039 + 41.2 - 29.4
   end
   
   c5 do
@@ -35,12 +34,13 @@ Nf3('Réti Opening') do
   g6 * 10823 + 35.4 - 30.9
   e6 *  4504 + 43.6 - 26.8
   
-  ~ c5.c4    # -> English Opening - Symmetrical Variation
-  ~ c5.e4    # -> Sicilian Defence
-  ~ g6.d4    # -> King's Indian
-  ~ g6.c4    # -> English
-  ~ g6.e4    # -> Sicilian
-  ~ g6.g3    # -> King's Indian Attack
-  ~ f5.d4    # -> Dutch Defence
-  ~ f5.e4.e5 # -> Latvian Gambit
+  ~ c5.c4        # -> English Opening - Symmetrical Variation
+  ~ c5.e4        # -> Sicilian Defence
+  ~ g6.d4        # -> King's Indian
+  ~ g6.c4        # -> English
+  ~ g6.e4        # -> Sicilian
+  ~ g6.g3        # -> King's Indian Attack
+  ~ f5.c4 * 1039 # -> English
+  ~ f5.d4        # -> Dutch Defence
+  ~ f5.e4.e5     # -> Latvian Gambit
 end
