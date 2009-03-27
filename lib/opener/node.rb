@@ -12,7 +12,7 @@ class Opener::Node
   
   BLACK = '#000000'
   WHITE = '#cccccc'
-  EMPTY = '#fcfcfc'
+  EMPTY = '#f0f0f0'
   
   attr_accessor :board
   attr_accessor :opening
