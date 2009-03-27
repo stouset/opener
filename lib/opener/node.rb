@@ -41,7 +41,7 @@ class Opener::Node
   
   def parent
     @_parent ||= begin
-      if self.parents.any? and self.parents.all?(&:transposition?)
+      if self.transposition?
         warn 'No authoritative parent:'
         parents.each {|edge| warn "  #{edge.to_pgn}" }
       elsif self.parents.reject(&:transposition?).length > 1
@@ -52,6 +52,10 @@ class Opener::Node
       parent = parents.reject(&:transposition?).first || parents.to_a.first
       parent.try(:head)
     end
+  end
+  
+  def transposition?
+    self.parents.any? and self.parents.all?(&:transposition?)
   end
   
   def draws
