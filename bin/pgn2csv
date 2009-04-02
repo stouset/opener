@@ -3,6 +3,7 @@
 ARGF.each_line("\n\n") do |line|
   next unless line =~ %r{\A1\.} # skip anything but PGN string
   next if     line =~ %r{\*$}   # skip non-decisive matches
+  next if     line.length < 20  # skip too-short lines
   
   line  = line.split(%r{\n}).join(' ')
   line  = line.split(%r{\s})
