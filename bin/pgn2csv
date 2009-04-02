@@ -6,10 +6,12 @@ ARGF.each_line("\n\n") do |line|
   
   line  = line.split(%r{\n}).join(' ')
   line  = line.split(%r{\s})
+  
+  twic  = ARGF.path.match(%r{twic(\d+).pgn})[1]
   pgn   = line[0..-2].join(' ')
   score = line[-1]
   
   pgn.gsub! %r(\{[^\}]*\}), '' # remove comments
   
-  puts "#{pgn}, #{score}"
+  puts "#{twic}, #{pgn}, #{score}"
 end
